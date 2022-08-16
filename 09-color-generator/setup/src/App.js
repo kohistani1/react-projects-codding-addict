@@ -10,12 +10,11 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     try {
       let colors = new Values(color).all(10);
-
       setList(colors);
       setError(false);
+
     } catch (error) {
       console.log(error);
       setError(true);
@@ -30,7 +29,7 @@ function App() {
           <input
             type='text'
             placeholder='#f15025'
-            className={(error || null) && 'error'}
+            className={(error || null) && 'error'} // {`${error?'error':null}`}
             value={color}
             onChange={(e) => setColor(e.target.value)}
           />

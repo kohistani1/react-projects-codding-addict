@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import rgbToHex from './utils';
 
+//learnt more about conditional rendering and copying to clipboard
+
 const SingleColor = ({ rgb, weight, index }) => {
   const [alert, setAlert] = useState(false);
   const hex = rgbToHex(...rgb);
