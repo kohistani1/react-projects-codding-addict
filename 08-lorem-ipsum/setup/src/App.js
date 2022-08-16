@@ -1,4 +1,4 @@
-//even the type of input is number we only get string in
+//even the type of input is number we get string as input
 //minimum value for paragraph can only be 1 and max is 8
 
 import React, { useState } from 'react';
@@ -9,22 +9,22 @@ function App() {
   const [showModal, setshowModal] = useState(false);
   const [text, setText] = useState([]);
 
-  let amount = +count || 1;
+  let amount = +count || 1; //parsInt(count)+1
 
-  //after 2s set showModal to false
+  //after 2s set showModal to false (hide the modal)
   const showmodal = setTimeout(() => {
     setshowModal(false);
   }, 2000);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //max paragraph can only be 8
+    //max paragraphs can only be 8
     if (count > 8) amount = 8;
     //slicing the arr based on the amount(count) got from the user
     setText(data.slice(0, amount));
-    //modal is showing
+    //modal is showing (show the modal)
     setshowModal(true);
-    //to hide th modal after 2s
+    //to hide the modal after 2s
     showmodal();
   };
 
