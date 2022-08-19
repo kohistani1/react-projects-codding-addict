@@ -2,9 +2,18 @@ import React, { useState, useEffect } from 'react';
 import List from './List';
 import Alert from './Alert';
 
+const getList = () => {
+  let list = localStorage.getItem('list');
+  if (list) {
+    return JSON.parse(list);
+  } else {
+    return [];
+  }
+};
+
 function App() {
   const [name, setName] = useState(''); //input will store here
-  const [list, setList] = useState([]); // all inputs will be pushed here
+  const [list, setList] = useState(getList()); // all inputs will be pushed here
   const [isEditing, setIsEditing] = useState(false); //flag to do some operations
   const [editId, setEditId] = useState(null);
   const [alert, setAlert] = useState({
@@ -12,6 +21,10 @@ function App() {
     msg: '',
     type: '',
   });
+
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(list));
+  }, [list]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,7 +47,7 @@ function App() {
       setList([...list, newItem]);
       showAlert(true, 'item added', 'success');
     }
-    console.log(list.length);
+
     //clearing input field and editId back to initial position
     setName(''); //name is cleared
     setEditId(null);
